@@ -2,7 +2,7 @@
 
 class Program
 {
-    private static HeapFileManager fileManager = new HeapFileManager("heapfile.dat");
+    private static HeapFileManager fileManager = new HeapFileManager("data.txt");
     private static BufferManager bufferManager = new BufferManager(fileManager);
     private static PerformanceTester performanceTester = new PerformanceTester(fileManager);
 
@@ -68,7 +68,8 @@ class Program
     {
         Console.Write("Zadejte index bloku, který chcete načíst: ");
         int index = int.Parse(Console.ReadLine());
-        bufferManager.ProcessNextBlock(index);
+        bufferManager.LoadNextBlock(index);
+        bufferManager.DisplayCurrentBufferContents();
     }
 
     private static void WriteDataFromBuffer()

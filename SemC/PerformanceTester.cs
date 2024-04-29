@@ -16,8 +16,8 @@ namespace SemC
         public PerformanceTester(HeapFileManager fileManager)
         {
             this.fileManager = fileManager;
-            singleBufferManager = new BufferManager(fileManager, 1);
-            doubleBufferManager = new BufferManager(fileManager, 2);
+            singleBufferManager = new BufferManager(fileManager);
+            doubleBufferManager = new BufferManager(fileManager);
         }
 
         public void RunPerformanceTest()
@@ -32,18 +32,26 @@ namespace SemC
             Console.WriteLine($"Průměrný čas s dvěma buffery: {doubleBufferTime} ms");
         }
 
-        private long TestBufferPerformance(BufferManager bufferManager)
+        private double TestBufferPerformance(BufferManager bufferManager)
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-            for (int i = 0; i < 10; i++) 
+            for (int i = 0; i < 5; i++)
             {
                 bufferManager.ProcessNextBlock(i);
             }
 
-            stopwatch.Stop();
-            return stopwatch.ElapsedMilliseconds / 10; 
+            Stopwatch stopwatch = new Stopwatch();
+            long totalMilliseconds = 0;
+
+            for (int i = 0; i < 50; i++) 
+            {
+                stopwatch.Restart();  
+                bufferManager.ProcessNextBlock(i % 10);  
+                stopwatch.Stop();
+                totalMilliseconds += stopwatch.ElapsedMilliseconds;
+            }
+
+            double averageTime = totalMilliseconds / 50.0; 
+            return averageTime;
         }
     }
 }

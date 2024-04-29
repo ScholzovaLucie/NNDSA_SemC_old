@@ -14,16 +14,26 @@ namespace SemC
         private bool displayContents;
         private HeapFileManager fileManager;
 
-        public BufferManager(HeapFileManager fileManager, int numberOfBuffers = 2, bool displayContents = true)
+        public BufferManager(HeapFileManager fileManager)
         {
             this.fileManager = fileManager;
             buffer1 = new Buffer();
-            if (numberOfBuffers > 1)
-            {
-                buffer2 = new Buffer();
-            }
+            buffer2 = new Buffer();
             useBuffer1 = true;
-            this.displayContents = displayContents;
+        }
+        public void LoadNextBlock(int blockIndex)
+        {
+            Block block = fileManager.ReadBlockFromFile(blockIndex);
+            if (useBuffer1)
+            {
+                buffer1.LoadBlock(block);
+                useBuffer1 = false;
+            }
+            else
+            {
+                buffer2.LoadBlock(block);
+                useBuffer1 = true;
+            }
         }
 
         public void ProcessNextBlock(int blockIndex)
