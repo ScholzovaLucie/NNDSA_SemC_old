@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SemC
 {
-    internal class Record
+    public class Record
     {
         public int Id { get; set; } 
         public string Data { get; set; } 

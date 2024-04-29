@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SemC
 {
-    internal class Block
+    public class Block
     {
         public List<Record> Records { get; set; }
         public static int Capacity { get; } = 103;

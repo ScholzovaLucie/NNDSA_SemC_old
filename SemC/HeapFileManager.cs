@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SemC
 {
-    internal class HeapFileManager
+    public class HeapFileManager
     {
         private List<Block> blocks;
         public string FilePath { get; set; }

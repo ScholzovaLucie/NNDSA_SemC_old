@@ -35,12 +35,12 @@ namespace SemC
             {
                 targetBuffer.DisplayContents();
             }
-            useBuffer1 = !useBuffer1;  // Toggle between buffers
+            useBuffer1 = !useBuffer1; 
         }
 
         internal void DisplayCurrentBufferContents()
         {
-            Buffer currentBuffer = useBuffer1 ? buffer2 : buffer1; // the last used buffer
+            Buffer currentBuffer = useBuffer1 ? buffer2 : buffer1;
             if (currentBuffer.CurrentBlock != null)
             {
                 currentBuffer.DisplayContents();
