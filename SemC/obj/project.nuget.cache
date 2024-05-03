@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "MwIx4MQqgEWWE+KjyAugmiEmZs817xTDGm69RygZX9q/YJADBo+d+zNiO9AP36gLgXlRdARqbtoEOMKhDs+c8w==",
+  "dgSpecHash": "4M4ERDcHxe+KtfsAySz97DO1doV+dFCxrxcJeWJUVKwiB/D0I4UYV2oenINTN9OPIB5+A2UhB1r+ZohtLR20Fg==",
   "success": true,
   "projectFilePath": "C:\\Users\\lucka\\OneDrive - Univerzita Pardubice\\UPCE\\ING 1.rocnik 2.semestr\\NNDSA - Struktury\\semestralka\\SemC\\SemC\\SemC.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\lucka\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.28\\microsoft.windowsdesktop.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\lucka\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.28\\microsoft.netcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\lucka\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.28\\microsoft.aspnetcore.app.ref.6.0.28.nupkg.sha512",
+    "C:\\Users\\lucka\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.28\\microsoft.netcore.app.host.win-x64.6.0.28.nupkg.sha512"
+  ],
   "logs": []
 }

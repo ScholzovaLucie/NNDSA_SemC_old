@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SemC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a42e633c9478ea5f08c5909c9c8b76ea3b8ba6a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SemC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SemC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
