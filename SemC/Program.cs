@@ -1,108 +1,29 @@
-﻿using SemC;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
-class Program
+
+namespace SemC
 {
-    private static HeapFileManager fileManager = new HeapFileManager("data.txt");
-    private static BufferManager bufferManager = new BufferManager(fileManager);
-    private static PerformanceTester performanceTester = new PerformanceTester(fileManager);
-
-    static void Main(string[] args)
+    class Program
     {
-        InitializeApplication();
-        DisplayMenu();
-    }
-
-    private static void InitializeApplication()
-    {
-        fileManager.InitializeHeapFile(5); // Příklad inicializace s 5 bloky
-        Console.WriteLine("-------------------------------------------------");
-        Console.WriteLine("Vítejte v aplikaci pro správu sekvenčního zápisu a čtení!");
-        Console.WriteLine("-------------------------------------------------");
-    }
-
-    private static void DisplayMenu()
-    {
-        bool running = true;
-        while (running)
+        static async Task Main(string[] args)
         {
-            Console.WriteLine("\nZvolte si akci:");
-            Console.WriteLine("1. Načíst blok dat do bufferu");
-            Console.WriteLine("2. Zapsat blok dat z bufferu do souboru");
-            Console.WriteLine("3. Zobrazit obsah aktuálního bufferu");
-            Console.WriteLine("4. Test časové náročnosti při použití jednoho vs. dvou bufferů");
-            Console.WriteLine("5. Ukončit aplikaci");
-            Console.Write("\nVaše volba: ");
+            string filePath = "heapfile.bin";
+            var heapFile = new HeapFile(filePath, 1024, 1000000);  // buffer size 1024 bytes, total 100 records
 
-            string choice = Console.ReadLine();
-            ProcessUserInput(choice, ref running);
+            Console.WriteLine("Spouštění s jedním bufferem:");
+            heapFile.WriteRecords(false);  // Write records to the file with single buffer
+            heapFile.ReadRecords(false);   // Read records from the file with single buffer
+
+            Console.WriteLine("\nSpouštění se dvěma buffery:");
+            heapFile.WriteRecords(true);  // Write records to the file with dual buffers
+            heapFile.ReadRecords(true);
         }
-    }
 
-    private static void ProcessUserInput(string choice, ref bool running)
-    {
-        switch (choice)
-        {
-            case "1":
-                LoadDataBlock();
-                break;
-            case "2":
-                WriteDataFromBuffer();
-                break;
-            case "3":
-                DisplayBufferContents();
-                break;
-            case "4":
-                PerformPerformanceTest();
-                break;
-            case "5":
-                running = false;
-                Console.WriteLine("Aplikace byla ukončena. Děkujeme za použití.");
-                break;
-            default:
-                Console.WriteLine("Neplatná volba, zkuste to znovu.");
-                break;
-        }
-    }
 
-    private static void LoadDataBlock()
-    {
-        Console.Write("Zadejte index bloku, který chcete načíst: ");
-        int index = int.Parse(Console.ReadLine());
-        bufferManager.LoadNextBlock(index);
-        bufferManager.DisplayCurrentBufferContents();
-    }
-
-    private static void WriteDataFromBuffer()
-    {
-        Console.Write("Zadejte index bufferu pro zápis do souboru (1 nebo 2): ");
-        int bufferIndex = int.Parse(Console.ReadLine());
-
-        try
-        {
-            if (bufferIndex == 1 || bufferIndex == 2)
-            {
-                bufferManager.WriteBufferToFile(bufferIndex);
-                Console.WriteLine("Data byla zapsána do souboru.");
-            }
-            else
-            {
-                Console.WriteLine("Neplatný index bufferu. Zadejte 1 nebo 2.");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Došlo k chybě při zápisu do souboru: {ex.Message}");
-        }
-    }
-
-    private static void DisplayBufferContents()
-    {
-        Console.WriteLine("Obsah bufferu:");
-        bufferManager.DisplayCurrentBufferContents(); // Implementujte tuto metodu v BufferManager
-    }
-
-    private static void PerformPerformanceTest()
-    {
-        performanceTester.RunPerformanceTest();
     }
 }
